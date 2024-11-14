@@ -24,13 +24,21 @@ static int simpleInstruction(const char* name, int offset) {
   return offset + 1;
 }
 
+int getLinesIndex(Chunk* chunk, int offset) {
+  int index = 0;
+  for (int i = 1; i < offset; i += chunk->lines[index]) {
+    index += 2;
+  }
+  return index;
+}
+
 int dissassembleInstruction(Chunk* chunk, int offset) {
   printf("%04d ", offset);
-  
-  if (offset > 0 && chunk->lines[offset] == chunk->lines[offset - 1]) {
+
+  if (offset > 0 && chunk->lines[getLinesIndex(chunk, offset) + 1] == chunk->lines[getLinesIndex(chunk, offset - 1) + 1]) {
     printf("   | ");
   } else {
-    printf("%4d ", chunk->lines[offset]);
+    printf("%4d ", chunk->lines[getLinesIndex(chunk, offset) + 1]);
   }
 
   uint8_t instruction = chunk->code[offset];
