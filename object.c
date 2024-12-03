@@ -9,6 +9,9 @@
 #define ALLOCATE_OBJ(type, objectType) \
   (type*)allocateObject(sizeof(type), objectType)
 
+#define ALLOCATE_STRING(type, objectType, length) \
+  (type*)allocateObject(sizeof(type) + length * sizeof(char) + 1, objectType)
+
 static Obj* allocateObject(size_t size, ObjType type) {
   Obj* object = (Obj*)reallocate(NULL, 0, size);
   object->type = type;
@@ -19,9 +22,11 @@ static Obj* allocateObject(size_t size, ObjType type) {
 }
 
 static ObjString* allocateString(char* chars, int length) {
-  ObjString* string = ALLOCATE_OBJ(ObjString, OBJ_STRING);
+  ObjString* string = ALLOCATE_STRING(ObjString, OBJ_STRING, length);
   string->length = length;
-  string->chars = chars;
+  for (int i = 0; i < string->length; i++) {
+    string->chars[i] = chars[i];
+  }
   return string;
 }
 
