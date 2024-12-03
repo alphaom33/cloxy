@@ -18,7 +18,7 @@ static void freeObject(Obj* object) {
   switch (object->type) {
     case OBJ_STRING: {
       ObjString* string = (ObjString*)object;
-      FREE(ObjString, object);
+      if (string->type == STRING_OWNER) FREE(ObjString, object);
       break;
     }
   }

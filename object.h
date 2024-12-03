@@ -20,14 +20,20 @@ struct Obj {
   struct Obj* next;
 };
 
+typedef enum {
+  STRING_CONSTANT,
+  STRING_OWNER,
+} StringType;
+
 struct ObjString {
   Obj obj;
+  StringType type;
   int length;
   char chars[];
 };
 
-ObjString* takeString(char* chars, int length);
-ObjString* copyString(const char* chars, int length);
+ObjString* takeString(char* chars, int length, StringType type);
+ObjString* copyString(const char* chars, int length, StringType type);
 void printObject(Value value);
 
 static inline bool isObjType(Value value, ObjType type) {
