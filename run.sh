@@ -1,2 +1,2 @@
 gcc *.c
-./a.out
+./a.out $1
