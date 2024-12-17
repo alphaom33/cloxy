@@ -220,7 +220,7 @@ static void declareVariable() {
       error("Already a variable with this name in this scope.");
     }
   }  
-  
+
   addLocal(*name);
 }
 
@@ -234,7 +234,7 @@ static uint8_t parseVariable(const char* errorMessage) {
 }
 
 static void markInitialized() {
-  current->locals[current->scopeDepth - 1].depth = current->scopeDepth;
+  current->locals[current->localCount - 1].depth = current->scopeDepth;
 }
 
 static void defineVariable(uint8_t global) {
@@ -359,8 +359,6 @@ static void namedVariable(Token name, bool canAssign) {
   } else {
     emitBytes(getOp, arg);
   }
-  
-  emitBytes(OP_GET_GLOBAL, arg);
 }
 
 static void variable(bool canAssign) {
@@ -430,7 +428,6 @@ static void block() {
   while (!check(TOKEN_RIGHT_BRACE) && !check(TOKEN_EOF)) {
     declaration();
   }
-  printf("%d\n", parser.previous.type);
 
   consume(TOKEN_RIGHT_BRACE, "Expect '}' after block.");
 }
