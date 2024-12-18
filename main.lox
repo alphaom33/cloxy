@@ -1,4 +1,9 @@
-{
-  var a = 1;
-  print a;
+switch ("bsdf") {
+  case "asdhfljkadsunf":
+    print "oh";
+  case "bsdf":
+    print "yep";
+    print "ack";
+  default:
+    print "why";
 }
