@@ -127,6 +127,7 @@ static TokenType identifierType() {
       }
       break;
     case 'i': return checkKeyword(1, 1, "f", TOKEN_IF);
+    case 'l': return checkKeyword(1, 9, "oopSwitch", TOKEN_LOOPSWITCH);
     case 'n': return checkKeyword(1, 2, "il", TOKEN_NIL);
     case 'o': return checkKeyword(1, 1, "r", TOKEN_OR);
     case 'p': return checkKeyword(1, 4, "rint", TOKEN_PRINT);

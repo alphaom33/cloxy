@@ -1,9 +1,12 @@
-switch ("bsdf") {
+var ack = "bsdf";
+loopSwitch (ack) {
   case "asdhfljkadsunf":
     print "oh";
   case "bsdf":
     print "yep";
     print "ack";
-  default:
-    print "why";
+    ack = "csdf";
+  case "csdf":
+    print "ohyay";
+    ack = "dsdf";
 }
