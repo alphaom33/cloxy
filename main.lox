@@ -1,12 +1,8 @@
-var ack = "bsdf";
-loopSwitch (ack) {
-  case "asdhfljkadsunf":
-    print "oh";
-  case "bsdf":
-    print "yep";
-    print "ack";
-    ack = "csdf";
-  case "csdf":
-    print "ohyay";
-    ack = "dsdf";
+fun fib(n) {
+  if (n < 2) return n;
+  return fib(n - 2) + fib(n - 1);
 }
+
+var start = clock();
+print fib(35);
+print clock() - start;
