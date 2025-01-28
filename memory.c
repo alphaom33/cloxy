@@ -121,7 +121,8 @@ void collectGarbage() {
 
 static void freeObject(Obj* object) {
 #ifdef DEBUG_LOG_GC
-  printf("%p free type %d\n", (void*)object, object->type);
+  printObject(OBJ_VAL(object));
+  printf(" %p free type %d\n", (void*)object, object->type);
 #endif
   
   switch (object->type) {

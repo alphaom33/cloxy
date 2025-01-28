@@ -401,6 +401,7 @@ static void initCompiler(Compiler* compiler, FunctionType type) {
   compiler->function = newFunction();
   current = compiler;
   if (type != TYPE_SCRIPT) {
+    printf("name\n");
     current->function->name = copyString(parser.previous.start, parser.previous.length);
   }
 
@@ -803,6 +804,7 @@ static void synchronize() {
 }
 
 static void declaration() {
+  printf("\n\nstart\n\n");
   if (match(TOKEN_FUN)) {
     funDeclaration();
   } else if (match(TOKEN_VAR)) {
@@ -810,6 +812,7 @@ static void declaration() {
   } else {
     statement();
   }
+  printf("\n\nasdf\n\n");
 
   if (parser.panicMode) synchronize();
 }
