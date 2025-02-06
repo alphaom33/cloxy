@@ -1,2 +1,4 @@
-var a = "bsdf";
-print a;
+class A {}
+var b = A();
+b.a = "asdf";
+print b.a;
